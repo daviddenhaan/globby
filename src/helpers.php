@@ -12,7 +12,7 @@ if (! function_exists('Html')) {
 }
 
 if (! function_exists('Redirect')) {
-    function Redirect(string $to, int $code = 301): Responsable
+    function Redirect(string $to, int $code = 302): Responsable
     {
         return new RedirectResponse($to, $code);
     }
