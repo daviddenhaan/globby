@@ -22,8 +22,8 @@
             "email": "75451291+dulkoss@users.noreply.github.com"
         }
     ],
-    "minimum-stability": "stable",
     "require-dev": {
         "laravel/pint": "^1.11"
-    }
+    },
+    "minimum-stability": "stable"
 }
