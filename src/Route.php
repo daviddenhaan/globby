@@ -16,12 +16,7 @@ final class Route
     public function __construct(string $uri, ?Method $method = Method::GET)
     {
         $this->uri = $uri;
-
-        if (is_null($method)) {
-            $method = Method::GET;
-        }
-
-        $this->method = $method;
+        $this->method = $method ?? Method::GET;
     }
 
     public function uri(): string
@@ -37,11 +32,9 @@ final class Route
     public static function fromCallable(callable $handler): self
     {
         $reflect = new ReflectionFunction($handler);
-        $attribute = $reflect->getAttributes(Route::class)[0] ?? null;
 
-        if ($attribute == null) {
-            throw new NotARouteException();
-        }
+        $attribute = $reflect->getAttributes(Route::class)[0]
+            ?? throw new NotARouteException();
 
         return new self(...$attribute->getArguments());
     }

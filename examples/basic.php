@@ -1,6 +1,6 @@
 <?php
 
-// Remember to require your autoload!
+require __DIR__.'/../vendor/autoload.php';
 
 use Globby\Contracts\Responsable;
 use Globby\Method;
@@ -33,8 +33,6 @@ $application = (new Router)
 
 $server = new Server('127.0.0.1', 8080);
 
-$server->on('request', function ($request, $response) use ($application) {
-    $application->handle($request, $response);
-});
+$server->setHandler($application);
 
 $server->start();

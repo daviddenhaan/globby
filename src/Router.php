@@ -2,9 +2,12 @@
 
 namespace Globby;
 
+use Exception;
 use Globby\Contracts\Application;
-use OpenSwoole\Http\Request;
-use OpenSwoole\Http\Response;
+use Globby\Contracts\Middleware;
+use Globby\Middleware\RoutingMiddleware;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Router implements Application
 {
@@ -13,9 +16,14 @@ class Router implements Application
      */
     protected array $routes = [];
 
+    /**
+     * @var array<int, Middleware>
+     */
+    protected array $stack = [];
+
     public function __construct()
     {
-        //
+        $this->layer(new RoutingMiddleware($this));
     }
 
     public function route(callable $route): static
@@ -27,17 +35,22 @@ class Router implements Application
         return $this;
     }
 
-    public function handle(Request $request, Response $response): void
+    public function getHandler(string $uri, string $method): callable
     {
-        $uri = $request->server['request_uri'];
-        $method = $request->getMethod();
+        return $this->routes["$uri:$method"] ?? throw new Exception('route not found');
+    }
 
-        $handler = $this->routes["$uri:$method"] ?? null;
+    public function layer(Middleware $middleware): static
+    {
+        $this->stack[] = $middleware;
 
-        if (is_null($handler)) {
-            return;
-        }
+        return $this;
+    }
 
-        $handler($request)->transform($response);
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $stack = new Stack(array_reverse($this->stack));
+
+        return $stack->next($request);
     }
 }

@@ -3,7 +3,8 @@
 namespace Globby\Responders;
 
 use Globby\Contracts\Responsable;
-use OpenSwoole\Http\Response;
+use OpenSwoole\Core\Psr\Response;
+use Psr\Http\Message\ResponseInterface;
 
 class RedirectResponse implements Responsable
 {
@@ -17,10 +18,12 @@ class RedirectResponse implements Responsable
         $this->code = $code;
     }
 
-    public function transform(Response $response): void
+    public function respond(): ResponseInterface
     {
-        $response->status(301);
-
-        $response->header('Location', $this->to);
+        return new Response(
+            '',
+            $this->code,
+            headers: ['Location' => $this->to]
+        );
     }
 }

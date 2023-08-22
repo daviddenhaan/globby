@@ -2,9 +2,9 @@
 
 namespace Globby\Contracts;
 
-use OpenSwoole\Http\Response;
+use Psr\Http\Message\ResponseInterface;
 
 interface Responsable
 {
-    public function transform(Response $response): void;
+    public function respond(): ResponseInterface;
 }

@@ -3,7 +3,8 @@
 namespace Globby\Responders;
 
 use Globby\Contracts\Responsable;
-use OpenSwoole\Http\Response;
+use OpenSwoole\Core\Psr\Response;
+use Psr\Http\Message\ResponseInterface;
 
 class HtmlResponse implements Responsable
 {
@@ -14,12 +15,12 @@ class HtmlResponse implements Responsable
         $this->body = $body;
     }
 
-    public function transform(Response $response): void
+    public function respond(): ResponseInterface
     {
-        $response->header('Content-Type', 'text/html');
-
-        $response->status(200);
-
-        $response->end($this->body);
+        return new Response(
+            $this->body,
+            200,
+            headers: ['Content-Type' => 'text/html'],
+        );
     }
 }

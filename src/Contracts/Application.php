@@ -2,12 +2,15 @@
 
 namespace Globby\Contracts;
 
-use OpenSwoole\Http\Request;
-use OpenSwoole\Http\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-interface Application
+interface Application extends RequestHandlerInterface
 {
     public function route(callable $route): static;
 
-    public function handle(Request $request, Response $response): void;
+    public function getHandler(string $uri, string $method): callable;
+
+    public function handle(ServerRequestInterface $request): ResponseInterface;
 }
