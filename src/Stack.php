@@ -22,6 +22,6 @@ class Stack implements StackContract
     {
         $middleware = array_shift($this->inner);
 
-        return $middleware->call($request, $this);
+        return $middleware->handle($request, $this);
     }
 }
