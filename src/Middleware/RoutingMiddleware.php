@@ -3,8 +3,8 @@
 namespace Globby\Middleware;
 
 use Globby\Contracts\Middleware;
+use Globby\Contracts\Router;
 use Globby\Contracts\Stack;
-use Globby\Router;
 use OpenSwoole\Core\Psr\Response;
 use Psr\Http\Message\ServerRequestInterface;
 
