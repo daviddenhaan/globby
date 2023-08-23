@@ -34,7 +34,7 @@ final class Route
         $reflect = new ReflectionFunction($handler);
 
         $attribute = $reflect->getAttributes(Route::class)[0]
-            ?? throw new NotARouteException();
+            ?? throw new NotARouteException;
 
         return new self(...$attribute->getArguments());
     }
