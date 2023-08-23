@@ -22,6 +22,10 @@ class ScopedServiceMiddleware implements Middleware
     {
         $middleware = $this->router->getRoute($request->getUri(), $request->getMethod())['middleware'];
 
+        if (count($middleware) == 0) {
+            return $stack->next($request);
+        }
+
         $stack = new Stack([
             ...$middleware,
             ...$stack->remaining(),
