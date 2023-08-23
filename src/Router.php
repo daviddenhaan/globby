@@ -39,7 +39,8 @@ class Router implements Application, RouterContract
     }
 
     /**
-     * @param  array<int, Middleware>  $middleware
+     * @param callable $callback
+     * @param array<int, Middleware>  $middleware
      */
     public function route(callable $callback, array $middleware = []): static
     {
