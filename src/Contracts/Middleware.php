@@ -7,5 +7,5 @@ use Psr\Http\Message\ServerRequestInterface;
 
 interface Middleware
 {
-    public function call(ServerRequestInterface $request, Stack $stack): Response;
+    public function handle(ServerRequestInterface $request, Stack $stack): Response;
 }
