@@ -31,7 +31,7 @@ class RequestLoggingMiddleware implements Middleware
 
 $application = (new Router)
     ->route(root::class)
-    ->layer(new RequestLoggingMiddleware);
+    ->layer(RequestLoggingMiddleware::class);
 
 $server = new Server('127.0.0.1', 8080);
 

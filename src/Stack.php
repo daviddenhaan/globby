@@ -18,6 +18,11 @@ class Stack implements StackContract
         $this->inner = $stack;
     }
 
+    public function remaining(): array
+    {
+        return $this->inner;
+    }
+
     public function next(ServerRequestInterface $request): ResponseInterface
     {
         $middleware = array_shift($this->inner);

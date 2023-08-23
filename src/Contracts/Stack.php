@@ -12,5 +12,7 @@ interface Stack
      */
     public function __construct(array $stack);
 
+    public function remaining(): array;
+
     public function next(ServerRequestInterface $request): ResponseInterface;
 }

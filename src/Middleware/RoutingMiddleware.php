@@ -5,7 +5,7 @@ namespace Globby\Middleware;
 use Globby\Contracts\Middleware;
 use Globby\Contracts\Router;
 use Globby\Contracts\Stack;
-use OpenSwoole\Core\Psr\Response;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class RoutingMiddleware implements Middleware
@@ -17,7 +17,7 @@ class RoutingMiddleware implements Middleware
         $this->router = $router;
     }
 
-    public function handle(ServerRequestInterface $request, Stack $stack): Response
+    public function handle(ServerRequestInterface $request, Stack $stack): ResponseInterface
     {
         $handler = $this->router->getHandler($request->getUri(), $request->getMethod());
 
