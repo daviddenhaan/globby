@@ -17,7 +17,7 @@ class RoutingMiddleware implements Middleware
         $this->router = $router;
     }
 
-    public function call(ServerRequestInterface $request, Stack $stack): Response
+    public function handle(ServerRequestInterface $request, Stack $stack): Response
     {
         $handler = $this->router->getHandler($request->getUri(), $request->getMethod());
 
