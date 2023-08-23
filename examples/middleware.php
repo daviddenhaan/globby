@@ -19,7 +19,7 @@ function root(): Responsable
 
 class RequestLoggingMiddleware implements Middleware
 {
-    public function call(ServerRequestInterface $request, Stack $stack): Response
+    public function handle(ServerRequestInterface $request, Stack $stack): Response
     {
         $date = date(DATE_RSS);
 
