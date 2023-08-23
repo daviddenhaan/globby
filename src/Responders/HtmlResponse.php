@@ -10,16 +10,19 @@ class HtmlResponse implements Responsable
 {
     protected string $body;
 
-    public function __construct(string $body)
+    protected int $code;
+
+    public function __construct(string $body, int $code)
     {
         $this->body = $body;
+        $this->code = $code;
     }
 
     public function respond(): ResponseInterface
     {
         return new Response(
             $this->body,
-            200,
+            $this->code,
             headers: ['Content-Type' => 'text/html'],
         );
     }
