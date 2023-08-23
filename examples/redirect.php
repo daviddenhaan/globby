@@ -16,7 +16,7 @@ function hello()
 #[Route('/redirected')]
 function redirected()
 {
-    return Html("You got redirected!");
+    return Html('You got redirected!');
 }
 
 $application = (new Router)

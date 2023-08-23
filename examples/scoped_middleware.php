@@ -7,8 +7,8 @@ use Globby\Contracts\Stack;
 use Globby\Route;
 use Globby\Router;
 use OpenSwoole\Http\Server;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 #[Route('/')]
 function root()
@@ -26,7 +26,7 @@ class TestMiddleware implements Middleware
 {
     public function handle(ServerRequestInterface $request, Stack $stack): ResponseInterface
     {
-        echo "It works!!";
+        echo 'It works!!';
 
         return $stack->next($request);
     }

@@ -2,7 +2,6 @@
 
 namespace Globby;
 
-use Exception;
 use Globby\Contracts\Application;
 use Globby\Contracts\Middleware;
 use Globby\Contracts\Router as RouterContract;
@@ -39,8 +38,7 @@ class Router implements Application, RouterContract
     }
 
     /**
-     * @param callable $callback
-     * @param array<int, Middleware>  $middleware
+     * @param  array<int, Middleware>  $middleware
      */
     public function route(callable $callback, array $middleware = []): static
     {
