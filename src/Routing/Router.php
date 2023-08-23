@@ -1,6 +1,6 @@
 <?php
 
-namespace Globby;
+namespace Globby\Routing;
 
 use Globby\Contracts\Application;
 use Globby\Contracts\Middleware;
@@ -9,6 +9,7 @@ use Globby\Exceptions\NotAMiddlewareException;
 use Globby\Exceptions\RouteNotFoundException;
 use Globby\Middleware\RoutingMiddleware;
 use Globby\Middleware\ScopedServiceMiddleware;
+use Globby\Stack;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

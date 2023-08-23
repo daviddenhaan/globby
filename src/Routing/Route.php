@@ -1,9 +1,10 @@
 <?php
 
-namespace Globby;
+namespace Globby\Routing;
 
 use Attribute;
 use Globby\Exceptions\NotARouteException;
+use Globby\Method;
 use ReflectionFunction;
 
 #[Attribute(Attribute::TARGET_FUNCTION | Attribute::TARGET_METHOD)]

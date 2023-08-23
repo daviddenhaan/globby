@@ -4,8 +4,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Globby\Contracts\Responsable;
 use Globby\Method;
-use Globby\Route;
-use Globby\Router;
+use Globby\Routing\Route;
+use Globby\Routing\Router;
 use OpenSwoole\Http\Server;
 
 #[Route('/', Method::GET)]
