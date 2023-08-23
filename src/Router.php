@@ -2,14 +2,15 @@
 
 namespace Globby;
 
-use Exception;
 use Globby\Contracts\Application;
 use Globby\Contracts\Middleware;
+use Globby\Contracts\Router as RouterContract;
+use Globby\Exceptions\RouteNotFoundException;
 use Globby\Middleware\RoutingMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Router implements Application
+class Router implements Application, RouterContract
 {
     /**
      * @var array<string, callable>
@@ -37,7 +38,7 @@ class Router implements Application
 
     public function getHandler(string $uri, string $method): callable
     {
-        return $this->routes["$uri:$method"] ?? throw new Exception('route not found');
+        return $this->routes["$uri:$method"] ?? throw new RouteNotFoundException;
     }
 
     public function layer(Middleware $middleware): static
