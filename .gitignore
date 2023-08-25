@@ -1,2 +1,7 @@
-.tool-versions
 vendor/
+
+# --- RUNTIME ---
+.tool-versions
+
+# --- IDE ---
+.idea/
